@@ -18,28 +18,32 @@ export class AppComponent implements OnInit {
           "data": {
             "name": "Documents",
             "size": "75kb",
-            "type": "Folder"
+            "type": "Folder",
+            id : uuid.v4(),
           },
           "children": [
             {
               "data": {
                 "name": "Work",
                 "size": "55kb",
-                "type": "Folder"
+                "type": "Folder",
+                id : uuid.v4(),
               },
               "children": [
                 {
                   "data": {
                     "name": "Expenses.doc",
                     "size": "30kb",
-                    "type": "Document"
+                    "type": "Document",
+                    id : uuid.v4(),
                   }
                 },
                 {
                   "data": {
                     "name": "Resume.doc",
                     "size": "25kb",
-                    "type": "Resume"
+                    "type": "Resume",
+                    id : uuid.v4(),
                   }
                 }
               ]
@@ -48,14 +52,16 @@ export class AppComponent implements OnInit {
               "data": {
                 "name": "Home",
                 "size": "20kb",
-                "type": "Folder"
+                "type": "Folder",
+                id : uuid.v4(),
               },
               "children": [
                 {
                   "data": {
                     "name": "Invoices",
                     "size": "20kb",
-                    "type": "Text"
+                    "type": "Text",
+                    id : uuid.v4(),
                   }
                 }
               ]
@@ -66,28 +72,32 @@ export class AppComponent implements OnInit {
           "data": {
             "name": "Pictures",
             "size": "150kb",
-            "type": "Folder"
+            "type": "Folder",
+            id : uuid.v4()
           },
           "children": [
             {
               "data": {
                 "name": "barcelona.jpg",
                 "size": "90kb",
-                "type": "Picture"
+                "type": "Picture",
+                id : uuid.v4()
               }
             },
             {
               "data": {
                 "name": "primeui.png",
                 "size": "30kb",
-                "type": "Picture"
+                "type": "Picture",
+                id : uuid.v4()
               }
             },
             {
               "data": {
                 "name": "optimus.jpg",
                 "size": "30kb",
-                "type": "Picture"
+                "type": "Picture",
+                id : uuid.v4()
               }
             }
           ]

@@ -4,8 +4,8 @@
             <th>Name</th>
             <th>Size</th>
             <th>Type</th>
-            <th>Remove</th>
-            <th>Edit</th>
+            <th class="text-center">Edit</th>
+            <th class="text-center">Remove</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
@@ -16,6 +16,16 @@
             </td>
             <td>{{rowData.size}}</td>
             <td>{{rowData.type}}</td>
+            <td class="text-center">
+                <span class="icon icon-pencil">
+                    <i class="fa fa-pencil"></i>
+                </span>
+            </td>
+            <td class="text-center">
+                <span class="icon icon-trash">
+                    <i class="fa fa-trash"></i>
+                </span>
+            </td>
         </tr>
     </ng-template>
 </p-treeTable>
