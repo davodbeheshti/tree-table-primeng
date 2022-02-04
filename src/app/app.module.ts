@@ -6,6 +6,7 @@ import { SharedModule } from './shared/shared.module';
 
 import {TreeTableModule} from 'primeng/treetable';
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
+import { AddNodeComponent } from './add-node/add-node.component';
 
 
 const importPackagesPrimeNG = [
@@ -15,7 +16,8 @@ const importPackagesPrimeNG = [
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AddNodeComponent
   ],
   imports: [
     BrowserModule,
