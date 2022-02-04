@@ -6,7 +6,7 @@
     "version": 1,
     "newProjectRoot": "projects",
     "projects": {
-        "appTestDavod": {
+        "treeTablePrimeNG": {
             "projectType": "application",
             "schematics": {
                 "@schematics/angular:component": {
@@ -80,10 +80,10 @@
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "configurations": {
                         "production": {
-                            "browserTarget": "appTestDavod:build:production"
+                            "browserTarget": "treeTablePrimeNG:build:production"
                         },
                         "development": {
-                            "browserTarget": "appTestDavod:build:development"
+                            "browserTarget": "treeTablePrimeNG:build:development"
                         }
                     },
                     "defaultConfiguration": "development"
@@ -91,7 +91,7 @@
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "appTestDavod:build"
+                        "browserTarget": "treeTablePrimeNG:build"
                     }
                 },
                 "test": {
@@ -115,5 +115,5 @@
             }
         }
     },
-    "defaultProject": "appTestDavod"
+    "defaultProject": "treeTablePrimeNG"
 }
