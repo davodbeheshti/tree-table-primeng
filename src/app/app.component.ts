@@ -1,15 +1,25 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import * as uuid from 'uuid';
 
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  providers : [
+    MessageService,
+    DialogService
+  ]
 })
 export class AppComponent implements OnInit {
 
   files: any;
+
+  constructor(private messageService : MessageService , private dialogService : DialogService) {}
+
+  ref : DynamicDialogRef;
 
   ngOnInit(): void {
     this.files =
