@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
             "name": "Documents",
             "size": "75kb",
             "type": "Folder",
-            id : uuid.v4(),
+            id: uuid.v4(),
           },
           "children": [
             {
@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
                 "name": "Work",
                 "size": "55kb",
                 "type": "Folder",
-                id : uuid.v4(),
+                id: uuid.v4(),
               },
               "children": [
                 {
@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
                     "name": "Expenses.doc",
                     "size": "30kb",
                     "type": "Document",
-                    id : uuid.v4(),
+                    id: uuid.v4(),
                   }
                 },
                 {
@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
                     "name": "Resume.doc",
                     "size": "25kb",
                     "type": "Resume",
-                    id : uuid.v4(),
+                    id: uuid.v4(),
                   }
                 }
               ]
@@ -53,7 +53,7 @@ export class AppComponent implements OnInit {
                 "name": "Home",
                 "size": "20kb",
                 "type": "Folder",
-                id : uuid.v4(),
+                id: uuid.v4(),
               },
               "children": [
                 {
@@ -61,7 +61,7 @@ export class AppComponent implements OnInit {
                     "name": "Invoices",
                     "size": "20kb",
                     "type": "Text",
-                    id : uuid.v4(),
+                    id: uuid.v4(),
                   }
                 }
               ]
@@ -73,7 +73,7 @@ export class AppComponent implements OnInit {
             "name": "Pictures",
             "size": "150kb",
             "type": "Folder",
-            id : uuid.v4()
+            id: uuid.v4()
           },
           "children": [
             {
@@ -81,7 +81,7 @@ export class AppComponent implements OnInit {
                 "name": "barcelona.jpg",
                 "size": "90kb",
                 "type": "Picture",
-                id : uuid.v4()
+                id: uuid.v4()
               }
             },
             {
@@ -89,7 +89,7 @@ export class AppComponent implements OnInit {
                 "name": "primeui.png",
                 "size": "30kb",
                 "type": "Picture",
-                id : uuid.v4()
+                id: uuid.v4()
               }
             },
             {
@@ -97,12 +97,19 @@ export class AppComponent implements OnInit {
                 "name": "optimus.jpg",
                 "size": "30kb",
                 "type": "Picture",
-                id : uuid.v4()
+                id: uuid.v4()
               }
             }
           ]
         }
       ]
+  }
+
+  addNode(rowData) {
+    console.log(rowData);
+  }
+  deleteNode(rowData) {
+    console.log(rowData);
   }
 
 }

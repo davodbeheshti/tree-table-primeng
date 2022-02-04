@@ -17,12 +17,12 @@
             <td>{{rowData.size}}</td>
             <td>{{rowData.type}}</td>
             <td class="text-center">
-                <span class="icon icon-pencil">
+                <span class="icon icon-pencil" (click)="addNode(rowData)">
                     <i class="fa fa-pencil"></i>
                 </span>
             </td>
             <td class="text-center">
-                <span class="icon icon-trash">
+                <span class="icon icon-trash" (click)="deleteNode(rowData)">
                     <i class="fa fa-trash"></i>
                 </span>
             </td>
