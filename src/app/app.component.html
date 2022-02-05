@@ -1,15 +1,16 @@
-<p-treeTable [value]="files">
+<p-treeTable [value]="files" selectionMode="single" [(selection)]="selectedNode" dataKey="name" (onNodeSelect)="nodeSelect($event)" (onNodeUnselect)="nodeUnselect($event)">
     <ng-template pTemplate="header">
         <tr>
             <th>Name</th>
             <th>Size</th>
             <th>Type</th>
+            <th class="text-center">Add</th>
             <th class="text-center">Edit</th>
             <th class="text-center">Remove</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
-        <tr>
+        <tr [ttRow]="rowNode" [ttRow]="rowNode" [ttSelectableRow]="rowNode">
             <td>
                 <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
                 {{rowData.name}}
@@ -17,7 +18,12 @@
             <td>{{rowData.size}}</td>
             <td>{{rowData.type}}</td>
             <td class="text-center">
-                <span class="icon icon-pencil" (click)="addNode(rowData)">
+                <span class="icon icon-add" (click)="addNode(rowData)">
+                    <i class="fa fa-plus"></i>
+                </span>
+            </td>
+            <td class="text-center">
+                <span class="icon icon-pencil" (click)="EditNode(rowData)">
                     <i class="fa fa-pencil"></i>
                 </span>
             </td>
@@ -29,3 +35,5 @@
         </tr>
     </ng-template>
 </p-treeTable>
+
+<button (click)="test()">test</button>
