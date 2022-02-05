@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import * as uuid from 'uuid';
+import { AddNodeComponent } from './add-node/add-node.component';
 
 
 @Component({
@@ -16,11 +17,11 @@ import * as uuid from 'uuid';
 export class AppComponent implements OnInit {
 
   files: any;
-
-  constructor(private messageService: MessageService, private dialogService: DialogService) { }
-
+  selectedNode;
   ref: DynamicDialogRef;
   cols: any[];
+
+  constructor(private messageService: MessageService, private dialogService: DialogService) { }
 
   ngOnInit(): void {
     this.files =
@@ -120,25 +121,20 @@ export class AppComponent implements OnInit {
       { field: 'type', header: 'Type' }
     ];
   }
-
   nodeSelect(e) {
-    console.log("select", e);
     this.selectedNode = e;
   }
   nodeUnselect(e) {
-    console.log("Unselect", e);
     this.selectedNode = e;
   }
-
-  selectedNode;
-  test() {
-    console.log(this.selectedNode);
-  }
-
   addNode(rowData) {
     setTimeout(() => {
       console.log(this.selectedNode);
     }, 0);
+    this.ref = this.dialogService.open(AddNodeComponent , {
+      header: 'add favorid car',
+      width: '70%'
+    })
     console.log(rowData);
   }
   EditNode(rowData) {
