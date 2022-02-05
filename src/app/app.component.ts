@@ -8,7 +8,7 @@ import * as uuid from 'uuid';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers : [
+  providers: [
     MessageService,
     DialogService
   ]
@@ -17,9 +17,10 @@ export class AppComponent implements OnInit {
 
   files: any;
 
-  constructor(private messageService : MessageService , private dialogService : DialogService) {}
+  constructor(private messageService: MessageService, private dialogService: DialogService) { }
 
-  ref : DynamicDialogRef;
+  ref: DynamicDialogRef;
+  cols: any[];
 
   ngOnInit(): void {
     this.files =
@@ -113,12 +114,43 @@ export class AppComponent implements OnInit {
           ]
         }
       ]
+    this.cols = [
+      { field: 'name', header: 'Name' },
+      { field: 'size', header: 'Size' },
+      { field: 'type', header: 'Type' }
+    ];
+  }
+
+  nodeSelect(e) {
+    console.log("select", e);
+    this.selectedNode = e;
+  }
+  nodeUnselect(e) {
+    console.log("Unselect", e);
+    this.selectedNode = e;
+  }
+
+  selectedNode;
+  test() {
+    console.log(this.selectedNode);
   }
 
   addNode(rowData) {
+    setTimeout(() => {
+      console.log(this.selectedNode);
+    }, 0);
+    console.log(rowData);
+  }
+  EditNode(rowData) {
+    setTimeout(() => {
+      console.log(this.selectedNode);
+    }, 0);
     console.log(rowData);
   }
   deleteNode(rowData) {
+    setTimeout(() => {
+      console.log(this.selectedNode);
+    }, 0);
     console.log(rowData);
   }
 
