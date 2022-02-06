@@ -15,10 +15,10 @@
             <tr [ttRow]="rowNode" [ttRow]="rowNode" [ttSelectableRow]="rowNode">
                 <td>
                     <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
-                    {{rowData.name}}
+                    {{rowData.nameCar}}
                 </td>
-                <td>{{rowData.size}}</td>
-                <td>{{rowData.type}}</td>
+                <td>{{rowData.price}}</td>
+                <td>{{rowData.country}}</td>
                 <td class="text-center">
                     <span class="icon icon-add" (click)="addNode(rowData)">
                     <i class="fa fa-plus"></i>
