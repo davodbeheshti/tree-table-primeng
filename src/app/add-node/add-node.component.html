@@ -1,3 +1,25 @@
-<div>
+<div class="container-fluid add-node-component" [formGroup]="form">
+    <div class="row mt-3">
+        <label class="col-4">Name Car</label>
+        <div class="col-8">
+            <input formControlName="nameCar" type="text" class="form-control">
+        </div>
+    </div>
+    <div class="row my-3">
+        <label class="col-4">Price $</label>
+        <div class="col-8">
+            <input formControlName="price" type="number" class="form-control">
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-4">Country</label>
+        <div class="col-8">
+            <input formControlName="country" type="text" class="form-control">
+        </div>
+    </div>
+
+    <div class="my-3">
+        <p-button label="applyChange" (click)="applyChanges()"></p-button>
+    </div>
 
 </div>
