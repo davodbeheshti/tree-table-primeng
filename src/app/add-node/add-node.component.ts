@@ -14,7 +14,6 @@ export class AddNodeComponent implements OnInit {
   form: FormGroup;
 
   ngOnInit(): void {
-    debugger
     this.form = new FormGroup({
       nameCar: new FormControl('', Validators.required),
       price: new FormControl('', Validators.required),
