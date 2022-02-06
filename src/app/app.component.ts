@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
+import { MessageService, PrimeNGConfig } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import * as uuid from 'uuid';
 import { AddNodeComponent } from './add-node/add-node.component';
@@ -20,41 +20,41 @@ export class AppComponent implements OnInit {
   selectedNode;
   ref: DynamicDialogRef;
   cols: any[];
-
-  constructor(private messageService: MessageService, private dialogService: DialogService) { }
+  constructor(private messageService: MessageService, private dialogService: DialogService, private primengConfig: PrimeNGConfig) { }
 
   ngOnInit(): void {
+    this.primengConfig.ripple = true;
     this.files =
       [
         {
           "data": {
-            "name": "Documents",
-            "size": "75kb",
-            "type": "Folder",
+            "nameCar": "Documents",
+            "price": "75kb",
+            "country": "Folder",
             id: uuid.v4(),
           },
           "children": [
             {
               "data": {
-                "name": "Work",
-                "size": "55kb",
-                "type": "Folder",
+                "nameCar": "Work",
+                "price": "55kb",
+                "country": "Folder",
                 id: uuid.v4(),
               },
               "children": [
                 {
                   "data": {
-                    "name": "Expenses.doc",
-                    "size": "30kb",
-                    "type": "Document",
+                    "nameCar": "Expenses.doc",
+                    "price": "30kb",
+                    "country": "Document",
                     id: uuid.v4(),
                   }
                 },
                 {
                   "data": {
-                    "name": "Resume.doc",
-                    "size": "25kb",
-                    "type": "Resume",
+                    "nameCar": "Resume.doc",
+                    "price": "25kb",
+                    "country": "Resume",
                     id: uuid.v4(),
                   }
                 }
@@ -62,17 +62,17 @@ export class AppComponent implements OnInit {
             },
             {
               "data": {
-                "name": "Home",
-                "size": "20kb",
-                "type": "Folder",
+                "nameCar": "Home",
+                "price": "20kb",
+                "country": "Folder",
                 id: uuid.v4(),
               },
               "children": [
                 {
                   "data": {
-                    "name": "Invoices",
-                    "size": "20kb",
-                    "type": "Text",
+                    "nameCar": "Invoices",
+                    "price": "20kb",
+                    "country": "Text",
                     id: uuid.v4(),
                   }
                 }
@@ -82,33 +82,33 @@ export class AppComponent implements OnInit {
         },
         {
           "data": {
-            "name": "Pictures",
-            "size": "150kb",
-            "type": "Folder",
+            "nameCar": "Pictures",
+            "price": "150kb",
+            "country": "Folder",
             id: uuid.v4()
           },
           "children": [
             {
               "data": {
-                "name": "barcelona.jpg",
-                "size": "90kb",
-                "type": "Picture",
+                "nameCar": "barcelona.jpg",
+                "price": "90kb",
+                "country": "Picture",
                 id: uuid.v4()
               }
             },
             {
               "data": {
-                "name": "primeui.png",
-                "size": "30kb",
-                "type": "Picture",
+                "nameCar": "primeui.png",
+                "price": "30kb",
+                "country": "Picture",
                 id: uuid.v4()
               }
             },
             {
               "data": {
-                "name": "optimus.jpg",
-                "size": "30kb",
-                "type": "Picture",
+                "nameCar": "optimus.jpg",
+                "price": "30kb",
+                "country": "Picture",
                 id: uuid.v4()
               }
             }
@@ -128,21 +128,31 @@ export class AppComponent implements OnInit {
     this.selectedNode = e;
   }
   addNode(rowData) {
-    setTimeout(() => {
-      console.log(this.selectedNode);
-    }, 0);
-    this.ref = this.dialogService.open(AddNodeComponent , {
+    this.ref = this.dialogService.open(AddNodeComponent, {
       header: 'add favorid car',
-      width: '70%'
+      width: '50%'
+    })
+    this.ref.onClose.subscribe(x => {
+      if (x) {
+
+      }
     })
     console.log(rowData);
   }
   EditNode(rowData) {
-    setTimeout(() => {
-      console.log(this.selectedNode);
-    }, 0);
     console.log(rowData);
+    this.ref = this.dialogService.open(AddNodeComponent, {
+      header: 'add favorid car',
+      width: '50%',
+      data: rowData
+    })
+    this.ref.onClose.subscribe(x => {
+      if (x) {
+
+      }
+    })
   }
+
   deleteNode(rowData) {
     setTimeout(() => {
       console.log(this.selectedNode);
