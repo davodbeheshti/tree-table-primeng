@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
   selectedNode;
   ref: DynamicDialogRef;
   cols: any[];
+  dataTableReloader: boolean = true;
   constructor(private messageService: MessageService, private dialogService: DialogService, private primengConfig: PrimeNGConfig) { }
 
   ngOnInit(): void {
@@ -127,6 +128,7 @@ export class AppComponent implements OnInit {
   nodeUnselect(e) {
     this.selectedNode = e;
   }
+
   addNode(rowData) {
     this.ref = this.dialogService.open(AddNodeComponent, {
       header: 'add favorid car',
@@ -139,6 +141,7 @@ export class AppComponent implements OnInit {
     })
     console.log(rowData);
   }
+
   EditNode(rowData) {
     console.log(rowData);
     this.ref = this.dialogService.open(AddNodeComponent, {
@@ -156,6 +159,19 @@ export class AppComponent implements OnInit {
   deleteNode(rowData) {
     setTimeout(() => {
       console.log(this.selectedNode);
+      // if(this.selectedNode.parent === null) { // angualr version 11
+      if (this.selectedNode.node.parent === null) { // angualr version 12 ++
+        const index = this.files.findIndex(x => x.data.id === rowData.id);
+        this.files.splice(index, 1);
+        this.dataTableReloader = false;
+        setTimeout(() => this.dataTableReloader = true, 0);
+      } else {
+        const index = this.selectedNode.node.parent.children.findIndex(x => x.data.id === rowData.id);
+        // this.selectedNode.parent.children.splice(index, 1); // angualr version 11
+        this.selectedNode.node.parent.children.splice(index, 1); // angualr version 12 ++
+        this.dataTableReloader = false;
+        setTimeout(() => this.dataTableReloader = true, 0);
+      }
     }, 0);
     console.log(rowData);
   }

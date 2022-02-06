@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <h1 class="text-center my-4">Favorite car category</h1>
-    <p-treeTable [value]="files" selectionMode="single" [(selection)]="selectedNode" dataKey="name" (onNodeSelect)="nodeSelect($event)" (onNodeUnselect)="nodeUnselect($event)">
+    <p-treeTable [value]="files" selectionMode="single" [(selection)]="selectedNode" dataKey="name" (onNodeSelect)="nodeSelect($event)" (onNodeUnselect)="nodeUnselect($event)" *ngIf="dataTableReloader">
         <ng-template pTemplate="header">
             <tr>
                 <th>Car</th>
