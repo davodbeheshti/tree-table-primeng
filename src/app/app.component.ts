@@ -151,7 +151,11 @@ export class AppComponent implements OnInit {
     })
     this.ref.onClose.subscribe(x => {
       if (x) {
-
+        console.log(this.selectedNode);
+        // this.selectedNode.data.nameCar = x.nameCar; // angular primeng 11
+        this.selectedNode.node.data.nameCar = x.nameCar;  // angular primeng 12++
+        this.selectedNode.node.data.price = x.price;
+        this.selectedNode.node.data.country = x.country;
       }
     })
   }
@@ -159,16 +163,16 @@ export class AppComponent implements OnInit {
   deleteNode(rowData) {
     setTimeout(() => {
       console.log(this.selectedNode);
-      // if(this.selectedNode.parent === null) { // angualr version 11
-      if (this.selectedNode.node.parent === null) { // angualr version 12 ++
+      // if(this.selectedNode.parent === null) { // angualr primeng version 11
+      if (this.selectedNode.node.parent === null) { // angualr primeng version 12 ++
         const index = this.files.findIndex(x => x.data.id === rowData.id);
         this.files.splice(index, 1);
         this.dataTableReloader = false;
         setTimeout(() => this.dataTableReloader = true, 0);
       } else {
         const index = this.selectedNode.node.parent.children.findIndex(x => x.data.id === rowData.id);
-        // this.selectedNode.parent.children.splice(index, 1); // angualr version 11
-        this.selectedNode.node.parent.children.splice(index, 1); // angualr version 12 ++
+        // this.selectedNode.parent.children.splice(index, 1); // angualr primeng version 11
+        this.selectedNode.node.parent.children.splice(index, 1); // angualr primeng version 12 ++
         this.dataTableReloader = false;
         setTimeout(() => this.dataTableReloader = true, 0);
       }
