@@ -136,7 +136,8 @@ export class AppComponent implements OnInit {
     })
     this.ref.onClose.subscribe(x => {
       if (x) {
-
+        this.selectedNode.node.children.unshift({ data: { nameCar: x.nameCar, price: x.price, country: x.country, id: uuid.v4() }, children: [] })
+        this.selectedNode = null;
       }
     })
     console.log(rowData);
