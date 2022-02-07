@@ -155,6 +155,22 @@ export class AppComponent implements OnInit {
     this.rowNode = rowNode;
   }
 
+  addNode() {
+    this.ref = this.dialogService.open(AddNodeComponent, {
+      header: 'add favorid car',
+      width: '50%'
+    })
+    this.ref.onClose.subscribe(x => {
+      if (x) {
+        // rowNode.children.unshift({ data: { nameCar: x.nameCar, price: x.price, country: x.country, id: uuid.v4() }, children: [] }) // angular primeng 11
+        this.files.unshift({ data: { nameCar: x.nameCar, price: x.price, country: x.country, id: uuid.v4() }, children: [] }) // angular primeng 12++
+        this.messageService.add({ severity: 'success', summary: 'add', detail: 'Adding Success Full' })
+        this.dataTableReloader = false;
+        setTimeout(() => this.dataTableReloader = true, 0);
+      }
+    })
+  }
+
   addChild(rowData , rowNode) {
     this.ref = this.dialogService.open(AddNodeComponent, {
       header: 'add favorid car',
@@ -165,6 +181,7 @@ export class AppComponent implements OnInit {
         // rowNode.children.unshift({ data: { nameCar: x.nameCar, price: x.price, country: x.country, id: uuid.v4() }, children: [] }) // angular primeng 11
         rowNode.node.children.unshift({ data: { nameCar: x.nameCar, price: x.price, country: x.country, id: uuid.v4() }, children: [] }) // angular primeng 12++
         this.messageService.add({ severity: 'success', summary: 'add', detail: 'Adding Success Full' })
+ 
         rowNode = null;
       }
     })
@@ -172,7 +189,7 @@ export class AppComponent implements OnInit {
 
   EditChild(rowData , rowNode) {
     this.ref = this.dialogService.open(AddNodeComponent, {
-      header: 'add favorid car',
+      header: 'Edit Select Car',
       width: '50%',
       data: rowData
     })

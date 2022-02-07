@@ -1,7 +1,10 @@
 <p-toast></p-toast>
 
 <div class="container-fluid">
-    <h1 class="text-center my-4">Favorite car category</h1>
+    <div class="my-4 d-flex align-items-center justify-content-center">
+        <h1 class="mr-3">Favorite car category</h1>
+        <p-button label="addCar" (click)='addNode()' class="p-button-sm"></p-button>
+    </div>
     <p-treeTable [value]="files" dataKey="name" *ngIf="dataTableReloader">
         <ng-template pTemplate="header">
             <tr>
