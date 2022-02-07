@@ -156,7 +156,6 @@ export class AppComponent implements OnInit {
   showOperation(rowData , rowNode) {
     this.rowData = rowData;
     this.rowNode = rowNode;
-    console.log(rowNode);
   }
 
   addChild(rowData , rowNode) {
@@ -172,11 +171,9 @@ export class AppComponent implements OnInit {
         rowNode = null;
       }
     })
-    console.log(rowData);
   }
 
   EditChild(rowData , rowNode) {
-    console.log(rowData);
     this.ref = this.dialogService.open(AddNodeComponent, {
       header: 'add favorid car',
       width: '50%',
@@ -211,7 +208,6 @@ export class AppComponent implements OnInit {
         this.messageService.add({ severity: 'error', summary: 'Delete', detail: 'Deleted Success Full' })
       }
     }, 0);
-    console.log(rowData);
   }
 
 }
