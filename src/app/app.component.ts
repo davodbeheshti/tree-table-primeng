@@ -150,9 +150,6 @@ export class AppComponent implements OnInit {
   rowData;
   rowNode;
 
-  hideOperation() {
-    // this.rowData = '';
-  }
   showOperation(rowData , rowNode) {
     this.rowData = rowData;
     this.rowNode = rowNode;

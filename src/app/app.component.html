@@ -17,11 +17,11 @@
                     <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
                     {{rowData.nameCar}}
                 </td>
-                <td>{{rowData.price}}</td>
+                <td>${{rowData.price}}</td>
                 <td>{{rowData.country}}</td>
                 <td class="position-relative">
                     <div style="height: 60px;" class="speeddial-circle-demo">
-                        <p-speedDial (onShow)="showOperation(rowData , rowNode)" (onHide)="hideOperation()" [model]="items" radius="80" type="circle" buttonClassName="p-button-warning"></p-speedDial>
+                        <p-speedDial (onShow)="showOperation(rowData , rowNode)" [model]="items" radius="80" type="circle" buttonClassName="p-button-warning"></p-speedDial>
                     </div>
                 </td>
             </tr>
