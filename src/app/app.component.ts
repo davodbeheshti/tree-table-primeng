@@ -31,7 +31,6 @@ export class AppComponent implements OnInit {
       {
         icon: 'pi pi-pencil',
         command: () => {
-          // this.messageService.add({ severity: 'info', summary: 'Add', detail: 'Data Added' });
           this.EditChild(this.rowData , this.rowNode)
         }
       },
@@ -169,6 +168,7 @@ export class AppComponent implements OnInit {
       if (x) {
         // rowNode.children.unshift({ data: { nameCar: x.nameCar, price: x.price, country: x.country, id: uuid.v4() }, children: [] }) // angular primeng 11
         rowNode.node.children.unshift({ data: { nameCar: x.nameCar, price: x.price, country: x.country, id: uuid.v4() }, children: [] }) // angular primeng 12++
+        this.messageService.add({ severity: 'success', summary: 'add', detail: 'Adding Success Full' })
         rowNode = null;
       }
     })
@@ -188,6 +188,7 @@ export class AppComponent implements OnInit {
         rowNode.node.data.nameCar = x.nameCar;  // angular primeng 12++
         rowNode.node.data.price = x.price;
         rowNode.node.data.country = x.country;
+        this.messageService.add({ severity: 'warn', summary: 'Edit', detail: 'Edit Success Full' });
       }
     })
   }
@@ -200,12 +201,14 @@ export class AppComponent implements OnInit {
         this.files.splice(index, 1);
         this.dataTableReloader = false;
         setTimeout(() => this.dataTableReloader = true, 0);
+        this.messageService.add({ severity: 'error', summary: 'Delete', detail: 'Deleted Success Full' })
       } else {
         const index = rowNode.node.parent.children.findIndex(x => x.data.id === rowData.id);
         // rowNode.parent.children.splice(index, 1); // angualr primeng version 11
         rowNode.node.parent.children.splice(index, 1); // angualr primeng version 12 ++
         this.dataTableReloader = false;
         setTimeout(() => this.dataTableReloader = true, 0);
+        this.messageService.add({ severity: 'error', summary: 'Delete', detail: 'Deleted Success Full' })
       }
     }, 0);
     console.log(rowData);
