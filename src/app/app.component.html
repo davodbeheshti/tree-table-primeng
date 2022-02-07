@@ -1,14 +1,14 @@
+<p-toast></p-toast>
+
 <div class="container-fluid">
     <h1 class="text-center my-4">Favorite car category</h1>
-    <p-treeTable [value]="files" selectionMode="single" [(selection)]="selectedNode" dataKey="name" (onNodeSelect)="nodeSelect($event)" (onNodeUnselect)="nodeUnselect($event)" *ngIf="dataTableReloader">
+    <p-treeTable [value]="files" dataKey="name" *ngIf="dataTableReloader">
         <ng-template pTemplate="header">
             <tr>
                 <th>Car</th>
                 <th>Price</th>
                 <th>Country</th>
-                <th class="text-center">Add</th>
-                <th class="text-center">Edit</th>
-                <th class="text-center">Remove</th>
+                <th class="text-center">Opersion</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
@@ -19,21 +19,26 @@
                 </td>
                 <td>{{rowData.price}}</td>
                 <td>{{rowData.country}}</td>
-                <td class="text-center">
-                    <span class="icon icon-add" (click)="addNode(rowData)">
-                    <i class="fa fa-plus"></i>
-                </span>
+                <td class="position-relative">
+                    <div style="height: 60px;" class="speeddial-circle-demo">
+                        <p-speedDial (onShow)="showOperation(rowData , rowNode)" (onHide)="hideOperation()" [model]="items" radius="80" type="circle" buttonClassName="p-button-warning"></p-speedDial>
+                    </div>
                 </td>
-                <td class="text-center">
-                    <span class="icon icon-pencil" (click)="EditNode(rowData)">
-                    <i class="fa fa-pencil"></i>
-                </span>
-                </td>
-                <td class="text-center">
-                    <span class="icon icon-trash" (click)="deleteNode(rowData)">
-                    <i class="fa fa-trash"></i>
-                </span>
-                </td>
+                <!-- <td class="text-center">
+                        <span class="icon icon-add" (click)="addNode(rowData)">
+                            <i class="fa fa-plus"></i>
+                        </span>
+                    </td>
+                    <td class="text-center">
+                        <span class="icon icon-pencil" (click)="EditNode(rowData)">
+                        <i class="fa fa-pencil"></i>
+                    </span>
+                    </td>
+                    <td class="text-center">
+                        <span class="icon icon-trash" (click)="deleteNode(rowData)">
+                        <i class="fa fa-trash"></i>
+                         </span>
+                    </td> -->
             </tr>
         </ng-template>
     </p-treeTable>

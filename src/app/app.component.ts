@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MessageService, PrimeNGConfig } from 'primeng/api';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { MenuItem, MessageService, PrimeNGConfig } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import * as uuid from 'uuid';
 import { AddNodeComponent } from './add-node/add-node.component';
@@ -12,19 +12,44 @@ import { AddNodeComponent } from './add-node/add-node.component';
   providers: [
     MessageService,
     DialogService
-  ]
+  ],
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
 
   files: any;
-  selectedNode;
   ref: DynamicDialogRef;
   cols: any[];
   dataTableReloader: boolean = true;
+  items: MenuItem[];
+
   constructor(private messageService: MessageService, private dialogService: DialogService, private primengConfig: PrimeNGConfig) { }
 
   ngOnInit(): void {
     this.primengConfig.ripple = true;
+    this.items = [
+      {
+        icon: 'pi pi-pencil',
+        command: () => {
+          // this.messageService.add({ severity: 'info', summary: 'Add', detail: 'Data Added' });
+          this.EditChild(this.rowData , this.rowNode)
+        }
+      },
+      {
+        icon: 'pi pi-plus',
+        command: () => {
+          // this.messageService.add({ severity: 'success', summary: 'Update', detail: 'Data Updated' });
+          this.addChild(this.rowData , this.rowNode);
+        }
+      },
+      {
+        icon: 'pi pi-trash',
+        command: () => {
+          // this.messageService.add({ severity: 'error', summary: 'Delete', detail: 'Data Deleted' });
+          this.deleteChild(this.rowData , this.rowNode)
+        }
+      },
+    ];
     this.files =
       [
         {
@@ -122,28 +147,35 @@ export class AppComponent implements OnInit {
       { field: 'type', header: 'Type' }
     ];
   }
-  nodeSelect(e) {
-    this.selectedNode = e;
+
+  rowData;
+  rowNode;
+
+  hideOperation() {
+    // this.rowData = '';
   }
-  nodeUnselect(e) {
-    this.selectedNode = e;
+  showOperation(rowData , rowNode) {
+    this.rowData = rowData;
+    this.rowNode = rowNode;
+    console.log(rowNode);
   }
 
-  addNode(rowData) {
+  addChild(rowData , rowNode) {
     this.ref = this.dialogService.open(AddNodeComponent, {
       header: 'add favorid car',
       width: '50%'
     })
     this.ref.onClose.subscribe(x => {
       if (x) {
-        this.selectedNode.node.children.unshift({ data: { nameCar: x.nameCar, price: x.price, country: x.country, id: uuid.v4() }, children: [] })
-        this.selectedNode = null;
+        // rowNode.children.unshift({ data: { nameCar: x.nameCar, price: x.price, country: x.country, id: uuid.v4() }, children: [] }) // angular primeng 11
+        rowNode.node.children.unshift({ data: { nameCar: x.nameCar, price: x.price, country: x.country, id: uuid.v4() }, children: [] }) // angular primeng 12++
+        rowNode = null;
       }
     })
     console.log(rowData);
   }
 
-  EditNode(rowData) {
+  EditChild(rowData , rowNode) {
     console.log(rowData);
     this.ref = this.dialogService.open(AddNodeComponent, {
       header: 'add favorid car',
@@ -152,28 +184,26 @@ export class AppComponent implements OnInit {
     })
     this.ref.onClose.subscribe(x => {
       if (x) {
-        console.log(this.selectedNode);
-        // this.selectedNode.data.nameCar = x.nameCar; // angular primeng 11
-        this.selectedNode.node.data.nameCar = x.nameCar;  // angular primeng 12++
-        this.selectedNode.node.data.price = x.price;
-        this.selectedNode.node.data.country = x.country;
+        // rowNode.data.nameCar = x.nameCar; // angular primeng 11
+        rowNode.node.data.nameCar = x.nameCar;  // angular primeng 12++
+        rowNode.node.data.price = x.price;
+        rowNode.node.data.country = x.country;
       }
     })
   }
 
-  deleteNode(rowData) {
+  deleteChild(rowData , rowNode) {
     setTimeout(() => {
-      console.log(this.selectedNode);
-      // if(this.selectedNode.parent === null) { // angualr primeng version 11
-      if (this.selectedNode.node.parent === null) { // angualr primeng version 12 ++
+      // if(rowNode.parent === null) { // angualr primeng version 11
+      if (rowNode.node.parent === null) { // angualr primeng version 12 ++
         const index = this.files.findIndex(x => x.data.id === rowData.id);
         this.files.splice(index, 1);
         this.dataTableReloader = false;
         setTimeout(() => this.dataTableReloader = true, 0);
       } else {
-        const index = this.selectedNode.node.parent.children.findIndex(x => x.data.id === rowData.id);
-        // this.selectedNode.parent.children.splice(index, 1); // angualr primeng version 11
-        this.selectedNode.node.parent.children.splice(index, 1); // angualr primeng version 12 ++
+        const index = rowNode.node.parent.children.findIndex(x => x.data.id === rowData.id);
+        // rowNode.parent.children.splice(index, 1); // angualr primeng version 11
+        rowNode.node.parent.children.splice(index, 1); // angualr primeng version 12 ++
         this.dataTableReloader = false;
         setTimeout(() => this.dataTableReloader = true, 0);
       }
