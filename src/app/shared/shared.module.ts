@@ -4,13 +4,17 @@ import {ButtonModule} from 'primeng/button';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { TreeTableModule } from 'primeng/treetable';
 import {RippleModule} from 'primeng/ripple';
+import {SpeedDialModule} from 'primeng/speeddial';
+import {ToastModule} from 'primeng/toast';
 
 
 const importPackagesPrimeNG = [
   TreeTableModule,
   DynamicDialogModule,
   ButtonModule,
-  RippleModule
+  RippleModule,
+  SpeedDialModule,
+  ToastModule
 ]
 
 @NgModule({
