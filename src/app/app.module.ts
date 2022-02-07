@@ -5,6 +5,7 @@ import { SharedModule } from './shared/shared.module';
 import { AddNodeComponent } from './add-node/add-node.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     SharedModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    RouterModule.forRoot([])
   ],
   providers: [],
   bootstrap: [AppComponent]
